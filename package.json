@@ -1,8 +1,8 @@
 {
-  "name": "dasai",
+  "name": "mpvue-quckily-start",
   "version": "1.0.0",
   "mpvueTemplateProjectVersion": "0.1.0",
-  "description": "WangLuoMingXingDaSai",
+  "description": "基于mpvue 初始脚手架进行的再封装",
   "author": "xc",
   "private": true,
   "scripts": {
