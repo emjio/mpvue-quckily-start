@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     storage: {
       getItem: key => wx.getStorageSync(key),
       setItem: (key, value) => wx.setStorageSync(key, value),
-      removeItem: key => () => { console.log(1) }
+      removeItem: key => () => { }
     }
   })]
 })

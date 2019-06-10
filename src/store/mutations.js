@@ -6,9 +6,9 @@ import {
 export default{
   [LOGIN] (state, v) {
     state.$globalData = v
-    state.$globalData.$haslogin = true
+    state.$globalData.$hasLogin = true
   },
   [LOGOUT] (state) {
-    state.$haslogin = false
+    state.$hasLogin = false
   }
 }

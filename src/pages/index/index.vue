@@ -83,8 +83,8 @@ export default {
 
   async created () {
     // let app = getApp()
-    const data = await this.$api.inputinfo()
-    console.log(data)
+    // const data = await this.$api.inputinfo()
+    console.log(this.$globalData)
   }
 }
 </script>
