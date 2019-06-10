@@ -7,8 +7,9 @@
 
 ``` bash
 # 初始化项目
+git clone https://github.com/emjio/mpvue-quckily-start.git
 
-cd WangLuoMingXingDaSai
+cd mpvue-quckily-start
 
 # 安装依赖
 yarn add/ npm i / cnpm i 
@@ -34,9 +35,6 @@ npm build:my
 # 生成 bundle 分析报告
 npm run build --report
 ```
-
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## 目录介绍
 
@@ -78,3 +76,11 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
     └─tabs
 
 ```
+## 模板介绍
+
+该配置结构为实际生产项目文件剥离而成 
+基于mpvue + vuex + axios 的封装 在保留大幅度的可自定义的前提下 进行了较大限度的集成
+相关配置 或者使用请参考 [mpvue](http://vuejs-templates.github.io/webpack/) 和 [vuex]
+(https://vuex.vuejs.org/zh/guide/)
+axios 请求已做较大程度封装 对于多人同步开发较为友好
+
