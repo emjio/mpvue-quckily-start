@@ -80,7 +80,6 @@ npm run build --report
 
 该配置结构为实际生产项目文件剥离而成 
 基于mpvue + vuex + axios 的封装 在保留大幅度的可自定义的前提下 进行了较大限度的集成
-相关配置 或者使用请参考 [mpvue](http://vuejs-templates.github.io/webpack/) 和 [vuex]
-(https://vuex.vuejs.org/zh/guide/)
+相关配置 或者使用请参考 [mpvue](http://vuejs-templates.github.io/webpack/) 和 [vuex](https://vuex.vuejs.org/zh/guide/)
 axios 请求已做较大程度封装 对于多人同步开发较为友好
 
