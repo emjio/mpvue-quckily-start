@@ -28,30 +28,77 @@ export default {
 }
 
 axios.defaults.adapter = function (config) {
-  let baseURL = 'https://www.test.com'
-  //   if (process.env.METHOD === 'proxy1') {
-  //     baseURL = 'http://localhost:3001/getMovie' // 本地代理1(100次/小时)
-  //   } else if (process.env.METHOD === 'proxy2') {
-  //     baseURL = 'http://localhost:3002' // 本地代理2(100次/小时)
-  //   } else if (process.env.METHOD === 'nginx') {
-  //     baseURL = 'https://www.daxierhao.com/v2/movie' // nginx 代理(100次/小时)
-  //   }
-  console.log('baseURL', baseURL)
-  // 发交易之前显示加载中
-  wx.showLoading({ title: '拼命加载中...' })
-  // 发交易调用(开发放开注释)
+  const baseURL = 'https://shuiliao.tv/'
+  wx.showLoading({
+    title: '努力加载中...'
+  })
+
   return new Promise((resolve, reject) => {
-    console.log(config)
     wx.request({
       ...config,
       url: baseURL + config.url,
       data: config.params,
       success: res => {
-        console.log(res)
-        if (res.statusCode < 200 || res.statusCode > 300) {
+        const statusCode = res.statusCode
+        if (process.env.NODE_ENV === 'development') {
+          switch (statusCode) {
+            case 404:
+              wx.showToast({
+                title: `请求路径${baseURL + config.url}不存在`,
+                icon: 'none',
+                duration: 2000
+              })
+              break
+            case 405:
+              wx.showToast({
+                title: '请求method不允许',
+                icon: 'none',
+                duration: 2000
+              })
+              break
+            case 500:
+              wx.showToast({
+                title: '服务器500',
+                icon: 'none',
+                duration: 2000
+              })
+              break
+          }
+        } else { // 非开发模式下提供一般报错内容
+          if (statusCode > 400 && statusCode < 500) {
+            wx.showToast({
+              title: '无法链接到服务器，请检查网络是否通常',
+              icon: 'none',
+              duration: 2000
+            })
+          } else {
+            wx.showToast({
+              title: '获取服务器资源出现错，请联系管理员',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+        if (statusCode < 200 || statusCode > 400) {
           return reject(res.data || {})
         }
         return resolve(res.data || {})
+      },
+      flie: res => {
+        if (process.env.NODE_ENV === 'development') {
+          wx.showToast({
+            title: res,
+            icon: 'none',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '无法链接到服务器，请检查网络是否通常',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        return reject(res.data || {})
       },
       complete: res => {
         wx.hideLoading()
